@@ -1,0 +1,25 @@
+﻿@model DeckOCards.Controllers.DisplayResultsModel
+<p> Here's what the server responded with:</p>
+<p> Deck ID: @Model.createResult.deck_id</p>
+<p> Was the deck creation successful?: @Model.createResult.success</p>
+<p> Is it shuffled?: @Model.createResult.shuffled</p>
+@{
+    if (Model.createResult.shuffled)
+    {
+        <p> The deck is shuffled</p>
+    }
+    else
+    {
+        <p> <b>The deck has not been shuffled</b></p>
+    }
+}
+<p> There are <b> @Model.createResult.remaining </b> cards remaining</p>
+
+<p> This is the Cards we drew:</p>
+@{
+    foreach (var currCard in Model.drawResult.card)
+    {
+        <p>@currCard.value + of + @currCard.suit</p>
+        <img src ="@currCard.image"/>
+    }
+}
